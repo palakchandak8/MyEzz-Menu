@@ -27,7 +27,7 @@ Welcome to **MyEzz**, a street food delivery web app designed for students of **
 - **HTML5** + **CSS3** (custom styled)
 - **Vanilla JavaScript** (no frameworks)
 - **Mobile Responsive Design**
-- Optional WhatsApp integration (coming soon)
+- WhatsApp integration (coming soon)
 
 ---
 
