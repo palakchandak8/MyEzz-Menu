@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyEzz - Authentic Street Food Delivered</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #1a1a1a;
+            color: white;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .delivery-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .delivery-badge {
+            background-color: #2d5016;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .special-info {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .search-container {
+            background-color: #2a2a2a;
+            padding: 20px;
+        }
+
+        .search-box {
+            background-color: #3a3a3a;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            color: white;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            display: block;
+            font-size: 16px;
+        }
+
+        .search-box::placeholder {
+            color: #888;
+        }
+
+        .categories {
+            background-color: #2a2a2a;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+        }
+
+        .category-btn {
+            background-color: #ff6b35;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background-color 0.3s;
+        }
+
+        .category-btn:not(.active) {
+            background-color: #4a4a4a;
+        }
+
+        .category-btn:hover {
+            background-color: #ff5722;
+        }
+
+        .main-content {
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .vendors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .vendor-card {
+            background-color: #2a2a2a;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .vendor-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .vendor-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .vendor-info {
+            padding: 15px;
+        }
+
+        .vendor-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .vendor-details {
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .vendor-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #888;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .star {
+            color: #ffd700;
+        }
+
+        .vendor-rating {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0,0,0,0.8);
+            padding: 5px 10px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .suggest-section {
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .suggest-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .suggest-description {
+            color: #888;
+            margin-bottom: 15px;
+        }
+
+        .suggest-input {
+            display: flex;
+            gap: 10px;
+        }
+
+        .suggest-textbox {
+            flex: 1;
+            background-color: #3a3a3a;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            color: white;
+        }
+
+        .add-btn {
+            background-color: #ff6b35;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .add-btn:hover {
+            background-color: #ff5722;
+        }
+
+        .suggestions-list {
+            margin-top: 20px;
+        }
+
+        .suggestion-item {
+            background-color: #3a3a3a;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .suggestion-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .suggestion-location {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .suggestion-author {
+            text-align: right;
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* Vendor Menu Styles */
+        .vendor-menu {
+            display: none;
+        }
+
+        .vendor-menu.active {
+            display: block;
+        }
+
+        .vendor-header {
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .vendor-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .vendor-subtitle {
+            color: #888;
+            margin-bottom: 15px;
+        }
+
+        .back-btn {
+            background-color: #4a4a4a;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        .menu-section {
+            background-color: #2a2a2a;
+            border-radius: 0 0 12px 12px;
+            padding: 20px;
+        }
+
+        .menu-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #3a3a3a;
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-item-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+
+        .menu-item-info {
+            flex: 1;
+        }
+
+        .menu-item-name {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .menu-item-description {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .menu-item-price {
+            color: #ff6b35;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .menu-item-add {
+            background-color: #ff6b35;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .veg-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border: 2px solid #4caf50;
+            border-radius: 2px;
+            margin-left: 10px;
+            position: relative;
+        }
+
+        .veg-indicator::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 4px;
+            height: 4px;
+            background-color: #4caf50;
+            border-radius: 50%;
+        }
+
+        /* Cart Styles */
+        .cart-panel {
+            position: fixed;
+            right: -400px;
+            top: 0;
+            width: 400px;
+            height: 100vh;
+            background-color: #2a2a2a;
+            z-index: 1000;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .cart-panel.open {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 20px;
+            border-bottom: 1px solid #3a3a3a;
+            display: flex;
+            justify-content: between;
+            align-items: center;
+        }
+
+        .cart-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .cart-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            margin-left: auto;
+        }
+
+        .cart-content {
+            padding: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #3a3a3a;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-vendor {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity-btn {
+            background-color: #ff6b35;
+            border: none;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-total {
+            background-color: #3a3a3a;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .total-final {
+            font-weight: bold;
+            font-size: 18px;
+            border-top: 1px solid #666;
+            padding-top: 10px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background-color: #ff6b35;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .cart-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ff6b35;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 999;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #ff0000;
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .cart-panel {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .vendors-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .delivery-info {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Page -->
+    <div id="mainPage">
+        <div class="header">
+            <h1 class="logo">MyEzz</h1>
+            <p class="tagline">Authentic Street Food Delivered</p>
+            <div class="delivery-info">
+                <span class="delivery-badge">₹30 delivery - No GST or extra charges</span>
+                <span class="delivery-badge">Somaiya University - Direct to Building</span>
+            </div>
+            <p class="special-info">Special for Somaiya University: We deliver right to your building, not just the main gate!</p>
+        </div>
+
+        <div class="search-container">
+            <input type="text" class="search-box" placeholder="Search for food, vendors...">
+        </div>
+
+        <div class="categories">
+            <button class="category-btn active">All</button>
+            <button class="category-btn">Rolls</button>
+            <button class="category-btn">Chaat</button>
+            <button class="category-btn">Chinese</button>
+            <button class="category-btn">Tandoori</button>
+            <button class="category-btn">Beverages</button>
+            <button class="category-btn">Biryani</button>
+            <button class="category-btn">Momos</button>
+            <button class="category-btn">Sandwich</button>
+        </div>
+
+        <div class="main-content">
+            <h2 class="section-title">Popular Vendors Near You</h2>
+            
+            <div class="vendors-grid" id="vendorsGrid">
+<div class="vendor-card" data-vendor="bhukkad">
+  <img src="your-image-url.jpg" class="vendor-image">
+  <div class="vendor-rating">
+      <span class="star">⭐</span>
+      <span>4.6</span>
+  </div>
+  <div class="vendor-info">
+      <div class="vendor-name">Bhukkad Bhai</div>
+      <div class="vendor-details">Desi Street Food • Sandwich, Maggie</div>
+      <div class="vendor-meta">
+          <span>⏱ 15-20 min</span>
+          <span>📍 Somaiya</span>
+      </div>
+  </div>
+</div>
+
+                <div class="vendor-card" data-vendor="raju">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='200'><rect width='100%' height='100%' fill='%23ff6b35'/><text x='50%' y='50%' font-family='Arial' font-size='24' fill='white' text-anchor='middle' dy='.3em'>Pav Bhaji</text></svg>" alt="Raju's Pav Bhaji Corner" class="vendor-image">
+                    <div class="vendor-rating">
+                        <span class="star">⭐</span>
+                        <span>4.5</span>
+                    </div>
+                    <div class="vendor-info">
+                        <div class="vendor-name">Raju's Pav Bhaji Corner</div>
+                        <div class="vendor-details">Mumbai Street Food • Pav Bhaji, Vada Pav</div>
+                        <div class="vendor-meta">
+                            <span>⏱ 25-30 min</span>
+                            <span>📍 Vidyavihar</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vendor-card" data-vendor="chaat">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='200'><rect width='100%' height='100%' fill='%23f7931e'/><text x='50%' y='50%' font-family='Arial' font-size='24' fill='white' text-anchor='middle' dy='.3em'>Chaat</text></svg>" alt="Mumbai Chaat Express" class="vendor-image">
+                    <div class="vendor-rating">
+                        <span class="star">⭐</span>
+                        <span>4.3</span>
+                    </div>
+                    <div class="vendor-info">
+                        <div class="vendor-name">Mumbai Chaat Express</div>
+                        <div class="vendor-details">Chaat • Bhel, Sev Puri, Dahi Puri</div>
+                        <div class="vendor-meta">
+                            <span>⏱ 20-25 min</span>
+                            <span>📍 Ghatkopar</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vendor-card" data-vendor="tandoori">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='200'><rect width='100%' height='100%' fill='%23d4a574'/><text x='50%' y='50%' font-family='Arial' font-size='24' fill='white' text-anchor='middle' dy='.3em'>Tandoori</text></svg>" alt="Tandoori Junction" class="vendor-image">
+                    <div class="vendor-rating">
+                        <span class="star">⭐</span>
+                        <span>4.7</span>
+                    </div>
+                    <div class="vendor-info">
+                        <div class="vendor-name">Tandoori Junction</div>
+                        <div class="vendor-details">Tandoori • Tikka, Kebabs, Naan</div>
+                        <div class="vendor-meta">
+                            <span>⏱ 30-35 min</span>
+                            <span>📍 Kurla</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vendor-card" data-vendor="momos">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='200'><rect width='100%' height='100%' fill='%238bc34a'/><text x='50%' y='50%' font-family='Arial' font-size='24' fill='white' text-anchor='middle' dy='.3em'>Momos</text></svg>" alt="Momos King" class="vendor-image">
+                    <div class="vendor-rating">
+                        <span class="star">⭐</span>
+                        <span>4.4</span>
+                    </div>
+                    <div class="vendor-info">
+                        <div class="vendor-name">Momos King</div>
+                        <div class="vendor-details">Chinese • Momos, Noodles, Fried Rice</div>
+                        <div class="vendor-meta">
+                            <span>⏱ 15-20 min</span>
+                            <span>📍 Vikhroli</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vendor-card" data-vendor="rolls">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='200'><rect width='100%' height='100%' fill='%23ff9800'/><text x='50%' y='50%' font-family='Arial' font-size='24' fill='white' text-anchor='middle' dy='.3em'>Rolls</text></svg>" alt="Rolls Mania" class="vendor-image">
+                    <div class="vendor-rating">
+                        <span class="star">⭐</span>
+                        <span>4.2</span>
+                    </div>
+                    <div class="vendor-info">
+                        <div class="vendor-name">Rolls Mania</div>
+                        <div class="vendor-details">Rolls • Egg Rolls, Chicken Rolls, Veg Rolls</div>
+                        <div class="vendor-meta">
+                            <span>⏱ 20-25 min</span>
+                            <span>📍 Mulund</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vendor-card" data-vendor="chai">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='200'><rect width='100%' height='100%' fill='%23795548'/><text x='50%' y='50%' font-family='Arial' font-size='24' fill='white' text-anchor='middle' dy='.3em'>Chai</text></svg>" alt="Chai & Coffee Corner" class="vendor-image">
+                    <div class="vendor-rating">
+                        <span class="star">⭐</span>
+                        <span>4.1</span>
+                    </div>
+                    <div class="vendor-info">
+                        <div class="vendor-name">Chai & Coffee Corner</div>
+                        <div class="vendor-details">Beverages • Tea, Coffee, Cold Drinks</div>
+                        <div class="vendor-meta">
+                            <span>⏱ 10-15 min</span>
+                            <span>📍 Bhandup</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="suggest-section">
+                <h3 class="suggest-title">
+                    <span>💡</span>
+                    Suggest Your Favorite Street Food Vendor
+                </h3>
+                <p class="suggest-description">Know a great street food vendor? Share their details and help expand our network!</p>
+                
+                <div class="suggest-input">
+                    <input type="text" class="suggest-textbox" id="newVendorInput" placeholder="Vendor name and location...">
+                    <button class="add-btn" onclick="addNewVendor()">+ Add</button>
+                </div>
+
+                <div class="suggestions-list">
+                    <h4 style="margin-bottom: 15px;">Recent Suggestions</h4>
+                    <div class="suggestion-item">
+                        <div class="suggestion-name">Raju's Pav Bhaji</div>
+                        <div class="suggestion-location">Near Somaiya College Main Gate</div>
+                        <div class="suggestion-author">by Priya S.</div>
+                    </div>
+                    <div class="suggestion-item">
+                        <div class="suggestion-name">Mumbai Chaat Corner</div>
+                        <div class="suggestion-location">KJ Campus, Behind Library</div>
+                        <div class="suggestion-author">by Arjun K.</div>
+                    </div>
+                    <div class="suggestion-item">
+                        <div class="suggestion-name">Street King Momos</div>
+                        <div class="suggestion-location">Vidyavihar Station Road</div>
+                        <div class="suggestion-author">by Sneha M.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vendor Menu Page -->
+    <div id="vendorMenu" class="vendor-menu">
+        <div class="main-content">
+            <button class="back-btn" onclick="showMainPage()">← Back</button>
+            
+            <div class="vendor-header">
+                <h1 class="vendor-title" id="vendorTitle">Raju's Pav Bhaji Corner</h1>
+                <p class="vendor-subtitle" id="vendorSubtitle">Mumbai Street Food</p>
+                <div class="vendor-meta">
+                    <span class="rating">
+                        <span class="star">⭐</span>
+                        <span id="vendorRating">4.5</span>
+                    </span>
+                    <span>⏱ <span id="vendorTime">25-30 min</span></span>
+                    <span>📍 <span id="vendorLocation">Vidyavihar</span></span>
+                </div>
+            </div>
+
+            <div class="menu-section">
+                <h2 class="menu-title">Menu</h2>
+                <div id="menuItems">
+                    <!-- Menu items will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Panel -->
+    <div id="cartPanel" class="cart-panel">
+        <div class="cart-header">
+            <h2 class="cart-title">Your Order</h2>
+            <button class="cart-close" onclick="toggleCart()">×</button>
+        </div>
+        <div class="cart-content" id="cartContent">
+            <p style="color: #888; text-align: center; margin: 50px 0;">Your cart is empty</p>
+        </div>
+    </div>
+
+    <!-- Cart Toggle Button -->
+    <button class="cart-toggle" onclick="toggleCart()" id="cartToggle">
+        🛒
+        <span class="cart-count hidden" id="cartCount">0</span>
+    </button>
+
+   <script>
+// Vendor data (same as before)
+const vendors = { 
+bhukkad: {
+    name: "Bhukkad Bhai",
+    subtitle: "Desi Street Food",
+    rating: "4.6",
+    time: "15-20 min",
+    location: "Somaiya",
+    menu: [
+        {
+            id: "maggie-masala",
+            name: "Masala Maggie",
+            description: "Spicy street-style masala Maggie",
+            price: "₹50",
+            image: "your-image.svg",
+            isVeg: true
+        },
+        {
+            id: "cheese-sandwich",
+            name: "Cheese Sandwich",
+            description: "Toasted sandwich with melting cheese",
+            price: "₹60",
+            image: "your-image.svg",
+            isVeg: true
+        }
+    ]
+}
+ };
+
+let cart = [];
+let currentVendor = null;
+
+document.addEventListener('DOMContentLoaded', function() {
+    addVendorClickListeners();
+    addCategoryListeners();
+    setupSearch();
+});
+
+function addVendorClickListeners() {
+    const vendorCards = document.querySelectorAll('.vendor-card');
+    vendorCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const vendorId = this.getAttribute('data-vendor');
+            showVendorMenu(vendorId);
+        });
+    });
+}
+
+function showVendorMenu(vendorId) {
+    currentVendor = vendors[vendorId];
+    document.getElementById('mainPage').style.display = 'none';
+    document.getElementById('vendorMenu').classList.add('active');
+    document.getElementById('vendorTitle').textContent = currentVendor.name;
+    document.getElementById('vendorSubtitle').textContent = currentVendor.subtitle;
+    document.getElementById('vendorRating').textContent = currentVendor.rating;
+    document.getElementById('vendorTime').textContent = currentVendor.time;
+    document.getElementById('vendorLocation').textContent = currentVendor.location;
+
+    const menuItemsContainer = document.getElementById('menuItems');
+    menuItemsContainer.innerHTML = '';
+    currentVendor.menu.forEach(item => {
+        const menuItem = document.createElement('div');
+        menuItem.className = 'menu-item';
+        menuItem.innerHTML = `
+            <img src="${item.image}" alt="${item.name}" class="menu-item-image">
+            <div class="menu-item-info">
+                <div class="menu-item-name">
+                    ${item.name} ${item.isVeg ? '<span class="veg-indicator"></span>' : ''}
+                </div>
+                <div class="menu-item-description">${item.description}</div>
+                <div class="menu-item-price">${item.price}</div>
+            </div>
+            <button class="menu-item-add" onclick="addToCart('${item.id}')">+ Add</button>
+        `;
+        menuItemsContainer.appendChild(menuItem);
+    });
+}
+
+function addToCart(itemId) {
+    const item = currentVendor.menu.find(i => i.id === itemId);
+    if (!item) return;
+    const existingItem = cart.find(i => i.id === itemId);
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({
+            id: item.id,
+            name: item.name,
+            price: parseInt(item.price.replace('₹', '')),
+            vendor: currentVendor.name,
+            quantity: 1
+        });
+    }
+    updateCartDisplay();
+    updateCartCount();
+    showAddToCartFeedback();
+}
+
+function showAddToCartFeedback() {
+    const feedback = document.createElement('div');
+    feedback.innerHTML = '✅ Added to cart!';
+    feedback.style.cssText = `
+        position: fixed;
+        bottom: 100px;
+        right: 20px;
+        background: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 25px;
+        z-index: 1001;
+        animation: slideIn 0.3s ease;`;
+    document.body.appendChild(feedback);
+    setTimeout(() => feedback.remove(), 2000);
+}
+
+function updateCartCount() {
+    const cartCount = document.getElementById('cartCount');
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    cartCount.textContent = totalItems;
+    cartCount.classList.toggle('hidden', totalItems === 0);
+}
+
+function updateCartDisplay() {
+    const cartContent = document.getElementById('cartContent');
+    if (cart.length === 0) {
+        cartContent.innerHTML = '<p style="color: #888; text-align: center; margin: 50px 0;">Your cart is empty</p>';
+        return;
+    }
+    let cartHTML = '';
+    let subtotal = 0;
+    cart.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        subtotal += itemTotal;
+        cartHTML += `
+            <div class="cart-item">
+                <div class="cart-item-info">
+                    <div class="cart-item-name">${item.name}</div>
+                    <div class="cart-item-vendor">from ${item.vendor}</div>
+                </div>
+                <div class="cart-item-controls">
+                    <button class="quantity-btn" onclick="decreaseQuantity('${item.id}')">-</button>
+                    <span>${item.quantity}</span>
+                    <button class="quantity-btn" onclick="increaseQuantity('${item.id}')">+</button>
+                    <span style="margin-left: 15px; font-weight: bold;">₹${itemTotal}</span>
+                </div>
+            </div>`;
+    });
+    const deliveryFee = 30;
+    const total = subtotal + deliveryFee;
+    cartHTML += `
+        <div class="cart-total">
+            <div class="total-row"><span>Subtotal</span><span>₹${subtotal}</span></div>
+            <div class="total-row"><span>Delivery Fee</span><span>₹${deliveryFee}</span></div>
+            <div class="total-row total-final"><span>Total</span><span>₹${total}</span></div>
+            <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+        </div>`;
+    cartContent.innerHTML = cartHTML;
+}
+
+function increaseQuantity(id) {
+    const item = cart.find(i => i.id === id);
+    if (item) {
+        item.quantity++;
+        updateCartDisplay();
+        updateCartCount();
+    }
+}
+
+function decreaseQuantity(id) {
+    const item = cart.find(i => i.id === id);
+    if (item) {
+        item.quantity--;
+        if (item.quantity === 0) cart = cart.filter(i => i.id !== id);
+        updateCartDisplay();
+        updateCartCount();
+    }
+}
+
+function toggleCart() {
+    document.getElementById('cartPanel').classList.toggle('open');
+}
+
+function checkout() {
+    if (cart.length === 0) return alert('Your cart is empty!');
+    alert('Order placed successfully!');
+    cart = [];
+    updateCartDisplay();
+    updateCartCount();
+    toggleCart();
+}
+
+function showMainPage() {
+    document.getElementById('mainPage').style.display = 'block';
+    document.getElementById('vendorMenu').classList.remove('active');
+    currentVendor = null;
+}
+
+function addCategoryListeners() {
+    document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            const category = this.textContent.toLowerCase();
+            filterVendors(category);
+        });
+    });
+}
+
+function filterVendors(category) {
+    document.querySelectorAll('.vendor-card').forEach(card => {
+        const name = card.querySelector('.vendor-name').textContent.toLowerCase();
+        const details = card.querySelector('.vendor-details').textContent.toLowerCase();
+        card.style.display = category === 'all' || name.includes(category) || details.includes(category) ? 'block' : 'none';
+    });
+}
+
+function setupSearch() {
+    document.querySelector('.search-box').addEventListener('input', function() {
+        const query = this.value.toLowerCase();
+        document.querySelectorAll('.vendor-card').forEach(card => {
+            const name = card.querySelector('.vendor-name').textContent.toLowerCase();
+            const details = card.querySelector('.vendor-details').textContent.toLowerCase();
+            card.style.display = name.includes(query) || details.includes(query) || query === '' ? 'block' : 'none';
+        });
+    });
+}
+
+function addNewVendor() {
+    const input = document.getElementById('newVendorInput');
+    const vendorInfo = input.value.trim();
+    if (!vendorInfo) return alert('Please enter vendor name and location');
+
+    const suggestionsContainer = document.querySelector('.suggestions-list');
+    const newSuggestion = document.createElement('div');
+    newSuggestion.className = 'suggestion-item';
+    newSuggestion.innerHTML = `
+        <div class="suggestion-name">${vendorInfo}</div>
+        <div class="suggestion-location">Location details pending verification</div>
+        <div class="suggestion-author">by You</div>`;
+
+    const existing = suggestionsContainer.querySelector('.suggestion-item');
+    if (existing) {
+        suggestionsContainer.insertBefore(newSuggestion, existing);
+    } else {
+        suggestionsContainer.appendChild(newSuggestion);
+    }
+    input.value = '';
+    alert('Thank you for your suggestion!');
+}
+</script>
